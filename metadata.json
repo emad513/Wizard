@@ -1,0 +1,6 @@
+{
+  "name": "Wizard",
+  "description": "Decentralized group expense-splitting app built on Shelby Protocol (Aptos), with receipts stored on-chain as proof.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
