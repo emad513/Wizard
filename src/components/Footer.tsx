@@ -81,7 +81,7 @@ export const Footer: React.FC = () => {
                 </div>
 
                 <span className="hidden sm:inline-block px-2.5 py-1 rounded-md bg-[#FFE642]/10 border border-[#FFE642]/30 text-[#FFE642] text-[10px] font-mono font-bold uppercase">
-                  Aptos Testnet
+                  Shelbynet
                 </span>
               </div>
 

@@ -10,12 +10,28 @@ export const Navbar: React.FC = () => {
     disconnectWallet,
     activePage,
     setActivePage,
-    setIsWalletModalOpen,
   } = useExpenses();
 
   const truncatedAddr = accountAddress
     ? `${accountAddress.substring(0, 5)}...${accountAddress.substring(accountAddress.length - 4)}`
     : null;
+
+  const handleNavSection = (sectionId: string) => {
+    if (activePage === 'home') {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      setActivePage('settings');
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
 
   return (
     <header className="bg-[#121414]/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-[#504532]/30 shadow-[0_0_20px_rgba(255,191,0,0.1)]">
@@ -45,20 +61,24 @@ export const Navbar: React.FC = () => {
               >
                 Features
               </button>
-              <a
-                href="#how-it-works"
-                onClick={() => setActivePage('home')}
+              <button
+                onClick={() => handleNavSection('how-it-works')}
                 className="text-[#d4c5ab] hover:text-[#ffe2ab] transition-colors hover:bg-[#ffe2ab]/10 px-3 py-1.5 rounded-lg"
               >
                 How it Works
-              </a>
-              <a
-                href="#security"
-                onClick={() => setActivePage('home')}
+              </button>
+              <button
+                onClick={() => handleNavSection('security')}
                 className="text-[#d4c5ab] hover:text-[#ffe2ab] transition-colors hover:bg-[#ffe2ab]/10 px-3 py-1.5 rounded-lg"
               >
                 Security
-              </a>
+              </button>
+              <button
+                onClick={() => handleNavSection('about')}
+                className="text-[#d4c5ab] hover:text-[#ffe2ab] transition-colors hover:bg-[#ffe2ab]/10 px-3 py-1.5 rounded-lg"
+              >
+                About
+              </button>
             </>
           ) : (
             <>
@@ -91,6 +111,16 @@ export const Navbar: React.FC = () => {
                 }`}
               >
                 Add Expense
+              </button>
+              <button
+                onClick={() => handleNavSection('security')}
+                className={`transition-all px-3 py-1.5 rounded-lg ${
+                  activePage === 'settings'
+                    ? 'text-[#FFE642] bg-[#FFBF00]/10 shadow-[0_0_12px_rgba(255,230,66,0.2)]'
+                    : 'text-[#d4c5ab] hover:text-[#ffe2ab] hover:bg-[#ffe2ab]/10'
+                }`}
+              >
+                Security &amp; About
               </button>
             </>
           )}
