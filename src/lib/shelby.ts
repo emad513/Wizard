@@ -36,7 +36,7 @@ export async function uploadReceiptToShelby(
   // Generate unique Shelby blob key using @shelby-protocol/sdk helper
   const sanitizedName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
   const blobName = `wizard_receipt_${Date.now()}_${sanitizedName}`;
-  const ownerAddress = walletAddress || '0x71c34f2a8930419ef02b1c8a1e94812f34f28321';
+  const ownerAddress = walletAddress || '0x1';
 
   const blobKey = createBlobKey({
     account: ownerAddress,

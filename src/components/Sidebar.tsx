@@ -3,7 +3,15 @@ import { useExpenses } from '../context/ExpenseContext';
 import { WizardLogo } from './WizardLogo';
 
 export const Sidebar: React.FC = () => {
-  const { activePage, setActivePage } = useExpenses();
+  const { activePage, setActivePage, accountAddress, connected } = useExpenses();
+
+  const truncatedAddr = accountAddress
+    ? `${accountAddress.substring(0, 6)}...${accountAddress.substring(accountAddress.length - 4)}`
+    : 'Not Connected';
+
+  const userAvatar = accountAddress
+    ? `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(accountAddress)}`
+    : 'https://api.dicebear.com/7.x/bottts/svg?seed=wizard';
 
   return (
     <aside className="h-full w-64 fixed left-0 top-0 hidden md:flex flex-col bg-[#1e2020]/90 backdrop-blur-2xl border-r border-white/5 shadow-2xl z-40">
@@ -69,19 +77,21 @@ export const Sidebar: React.FC = () => {
         </button>
       </div>
 
-      {/* User Profile at Bottom matching Image 3 */}
+      {/* User Profile at Bottom */}
       <div className="mt-auto p-4 border-t border-white/5">
         <div className="flex items-center gap-3 glass-panel p-3 rounded-xl">
           <div className="w-10 h-10 rounded-full bg-[#353534] overflow-hidden border border-[#FFBF00]/30 shrink-0">
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDClMr-2jSMpc_K3-z1ln1Su6v4xBLw-m9ARoxPhIQIv48LNI0zct89RVLQ3zFk0XTmH_ehEizf6EFQsC2VM12JM4BZ3luapLqAR1QPQU6RdmcDOZy7RPSyMKOEI5yB_d2YLYYWaKHFBEoGRMMS9gPQHh1OEaXV4AkWXmJQhmQH_Db5SOLWLQT8ER80bXtJYaXHeWdym_n9nUJAGPsaULAmE7-SULfB9dZl_CEKbDiazlaKLaL3qiQ5_g"
-              alt="Wizard Admin"
+              src={userAvatar}
+              alt="Connected User Avatar"
               className="w-full h-full object-cover"
             />
           </div>
           <div className="flex-1 overflow-hidden">
-            <div className="font-bold text-xs text-[#e2e2e2] truncate">Wizard Admin</div>
-            <div className="text-[10px] font-semibold text-[#FFE642]">Premium Tier</div>
+            <div className="font-bold text-xs text-[#e2e2e2] font-mono truncate">{truncatedAddr}</div>
+            <div className="text-[10px] font-semibold text-[#FFE642]">
+              {connected ? 'Aptos Connected' : 'Disconnected'}
+            </div>
           </div>
           <span className="material-symbols-outlined text-[#d4c5ab] text-sm">unfold_more</span>
         </div>

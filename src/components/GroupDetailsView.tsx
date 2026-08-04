@@ -20,7 +20,31 @@ export const GroupDetailsView: React.FC = () => {
 
   const currentGroup = groups.find((g) => g.id === selectedGroupId) || groups[0];
 
-  if (!currentGroup) return null;
+  if (!currentGroup) {
+    return (
+      <div className="flex-1 pt-24 pb-20 md:pb-12 px-4 md:px-10 max-w-7xl mx-auto min-h-screen">
+        <button
+          onClick={() => setActivePage('dashboard')}
+          className="flex items-center gap-2 text-xs font-semibold text-[#d4c5ab] hover:text-[#FFE642] mb-6 transition-colors"
+        >
+          <span className="material-symbols-outlined text-base">arrow_back</span>
+          <span>Back to Groups Dashboard</span>
+        </button>
+
+        <div className="glass-panel rounded-2xl p-12 text-center max-w-xl mx-auto border border-[#F2CF7E]/30 my-8">
+          <span className="material-symbols-outlined text-4xl text-[#FFBF00] mb-3">folder_open</span>
+          <h2 className="font-['Montserrat'] font-bold text-2xl text-[#e2e2e2] mb-2">No Group Selected</h2>
+          <p className="text-xs text-[#d4c5ab] mb-6">Create or select a group from the dashboard to view expenses.</p>
+          <button
+            onClick={() => setActivePage('dashboard')}
+            className="bg-[#FFBF00] text-[#402d00] font-bold text-xs px-5 py-2.5 rounded-xl inline-flex items-center gap-2 hover:bg-[#FFE642] transition-colors"
+          >
+            <span>Go to Groups Dashboard</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const groupExpenses = expenses.filter((e) => e.groupId === currentGroup.id);
 

@@ -11,7 +11,11 @@ const ICONS = [
 ];
 
 export const NewGroupModal: React.FC = () => {
-  const { isNewGroupModalOpen, setIsNewGroupModalOpen, createGroup } = useExpenses();
+  const { isNewGroupModalOpen, setIsNewGroupModalOpen, createGroup, accountAddress } = useExpenses();
+
+  const truncatedAddr = accountAddress
+    ? `${accountAddress.substring(0, 5)}...${accountAddress.substring(accountAddress.length - 4)}`
+    : 'Connected Wallet';
 
   const [groupName, setGroupName] = useState('');
   const [selectedIcon, setSelectedIcon] = useState('flight_takeoff');
@@ -103,7 +107,7 @@ export const NewGroupModal: React.FC = () => {
               className="w-full bg-[#121414] border border-white/10 rounded-xl p-3.5 text-sm text-[#e2e2e2] focus:outline-none focus:border-[#FFBF00]"
             />
             <p className="text-[11px] text-[#d4c5ab] mt-1">
-              You (Wizard Admin) are automatically included as group owner.
+              You ({truncatedAddr}) are automatically included as group owner.
             </p>
           </div>
 
