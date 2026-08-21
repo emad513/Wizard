@@ -32,8 +32,7 @@ export interface Expense {
   currency: string;
   description: string;
   paidByAddress: string;
-  paidByName: string;
-  receiptName?: string;
+
   receiptUrl?: string; // Shelby blob URL or data preview
   shelbyBlobKey?: string;
   shelbyTxHash?: string;
