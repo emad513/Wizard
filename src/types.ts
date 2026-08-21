@@ -8,15 +8,7 @@ export interface Member {
 export interface Group {
   id: string;
   name: string;
-  icon: string; // lucide icon name like 'flight_takeoff', 'home', 'ac_unit'
-  dateRange?: string;
-  members: Member[];
-  totalSpend: number;
-  yourBalance: number; // positive = owed to you, negative = you owe
-  owedToName?: string;
-  owedAmount?: number;
-  status: 'Active' | 'Pending' | 'Settled';
-  lastActivity: string;
+  icon: string; // lucide icon name like 'flight_takeoff', 'hom lastActivity: string;
 }
 
 export interface ExpenseShare {
