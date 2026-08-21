@@ -1,23 +1,7 @@
 export interface Member {
   address: string;
   
-  name: string;
-  avatarUrl: string;
-}
-
-
-}
-
-export interface Expense {
-  id: string;
-  groupId: string;
-  groupName: string;
-  amount: number;
-  currency: string;
-  description: string;
-  paidByAddress: string;
-  paidByName: string;
-  receiptName?: string;
+ 
   receiptUrl?: string; // Shelby blob URL or data preview
   shelbyBlobKey?: string;
   shelbyTxHash?: string;
