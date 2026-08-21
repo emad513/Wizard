@@ -1,17 +1,20 @@
 export interface Member {
   address: string;
-  
- 
-  receiptUrl?: string; // Shelby blob URL or data preview
-  shelbyBlobKey?: string;
-  shelbyTxHash?: string;
-  splitMethod: 'equal' | 'custom';
-  shares: ExpenseShare[];
-  timestamp: string;
-  status: 'On-Chain Verified' | 'Pending';
+  name: string;
+  avatarUrl: string;
 }
 
-export type ActivePage = 'home' | 'dashboard' | 'groups' | 'add-expense' | 'expenses' | 'settings';
+export interface Group {
+  id: string;
+  name: string;
+  icon: string; // lucide icon name like 'flight_takeoff', 'home', 'ac_unit'
+  dateRange?: string;
+  members: Member[];
+  totalSpend: number;
+  yourBalance: number; // positive = owed to you, negative = you owe
+  owedToName?: string;
+  owedAmount?: number;
+  status: 'Active' | 'Pending' | 'Settled';
   lastActivity: string;
 }
 
@@ -29,7 +32,8 @@ export interface Expense {
   currency: string;
   description: string;
   paidByAddress: string;
-
+  paidByName: string;
+  receiptName?: string;
   receiptUrl?: string; // Shelby blob URL or data preview
   shelbyBlobKey?: string;
   shelbyTxHash?: string;
