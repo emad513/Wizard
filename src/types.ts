@@ -5,16 +5,7 @@ export interface Member {
   avatarUrl: string;
 }
 
-export interface Group {
-  id: string;
-  name: string;
-  icon: string; // lucide icon name like 'flight_takeoff', 'hom lastActivity: string;
-}
 
-export interface ExpenseShare {
-  memberAddress: string;
-  memberName: string;
-  amount: number;
 }
 
 export interface Expense {
